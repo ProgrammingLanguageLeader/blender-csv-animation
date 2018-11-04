@@ -121,14 +121,17 @@ def unregister():
     bpy.utils.unregister_class(ExportCsv)
     bpy.types.INFO_MT_file_export.remove(menu_func)
 
-
-def calc_speed(start_point, end_point):
-    time_delta = 0.1
-    distance = math.sqrt(
+    
+def calc_dist(start_point, end_point):
+    return math.sqrt(
         (start_point[0] - end_point[0]) ** 2 +
         (start_point[1] - end_point[1]) ** 2 +
         (start_point[2] - end_point[2]) ** 2
     )
+    
+def calc_speed(start_point, end_point):
+    time_delta = 0.1
+    distance = calc_dist(start_point, end_point)
     return distance / time_delta
 
 
